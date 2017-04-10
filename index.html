@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Frontend Masters React</title>
+	</head>
+	<body>
+		<div id="app">React has not yet rendered </div>
+		<script src="node_modules/react/dist/react.js"></script>
+		<script src="node_modules/react-dom/dist/react-dom.js"></script>
+	</body>
+
+	<script>
+
+	var MyFirstComponent = React.createClass({
+		render: function() {
+			return (
+				React.DOM.div(null,
+					React.DOM.h1(null, 'This is my first component!')
+				)
+			)
+		}
+	})
+
+	</script>
+
+</html>
