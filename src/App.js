@@ -16,16 +16,24 @@ class App extends Component {
   }
 }
 
+const MyTitle = React.createClass({
+  render() {
+    return (
+      div(null, 'check out this component!!!')
+    )
+  }
+});
+
 const MyFirstComponent = React.createClass({
   render() {
     return (  
-      React.DOM.div(  
-        null, React.DOM.h1(  
-          null, 'This is my first component!')
-      )
+      React.createElement(MyTitle),
+      React.createElement(MyTitle),
+      React.createElement(MyTitle),
+      React.createElement(MyTitle)
     )
   }
-})
+});
 
 
 export default App;
