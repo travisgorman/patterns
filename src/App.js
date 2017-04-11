@@ -7,7 +7,10 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <img 
+            src={logo} 
+            className="App-logo" 
+            alt="logo" />
           <h2>Welcome to React</h2>
         </div>
         <MyFirstComponent />
@@ -16,21 +19,39 @@ class App extends Component {
   }
 }
 
+var div = React.DOM.div
+var h1 = React.DOM.h1
+
 const MyTitle = React.createClass({
   render() {
     return (
-      div(null, 'check out this component!!!')
+      div(null, 
+        h1({style: {color:this.props.color}}, 
+          this.props.title)
+      )
     )
   }
 });
 
-const MyFirstComponent = React.createClass({
-  render() {
-    return (  
-      React.createElement(MyTitle),
-      React.createElement(MyTitle),
-      React.createElement(MyTitle),
-      React.createElement(MyTitle)
+var MyTitleFactory = React.createFactory(MyTitle)
+
+var MyFirstComponent = React.createClass({
+  render: function() {
+    return (
+      div(null, 
+        MyTitleFactory({
+            title: 'props are the best', color: 'peru'
+        }),
+        MyTitleFactory({
+            title: 'semicolons are the worst', color: 'mediumaquamarine',
+        }),
+        MyTitleFactory({
+            title: 'jk its okay if you like semicolons', color: 'papayawhip',
+        }),
+        MyTitleFactory({
+            title: 'nah, just kidding. fuck semicolons', color: 'palevioletred',
+        })
+      )
     )
   }
 });
