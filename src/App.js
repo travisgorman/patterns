@@ -34,19 +34,31 @@ const Landing = React.createClass({
 const Search = React.createClass({
   render () {
     return (
-      <div className="search">
+      <div className='search'>
         {preload.shows.map((show) => {
           return (
-            <div className="show-card">
-              <img src={`/public/img/posters/${show.poster}`} />
-              <div>
-                <h3>{show.title}</h3>
-                <h4>({show.year})</h4>
-                <p>{show.description}</p>
-              </div>
-            </div>
+            <ShowCard key={show.imdbID} show={show} />
           )
         })}
+      </div>
+    )
+  }
+})
+
+const ShowCard = React.createClass({
+  propTypes: {
+    show: React.PropTypes.object
+  },
+  render () {
+    const { poster, title, year, description } = this.props.show
+    return (
+      <div className='show-card'>
+        <img src={`/public/img/posters/${poster}`} />
+        <div>
+          <h3>{title}</h3>
+          <h4>{year}</h4>
+          <p>{description}</p>
+        </div>
       </div>
     )
   }
