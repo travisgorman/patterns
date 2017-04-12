@@ -34,7 +34,13 @@ const Landing = React.createClass({
 const Search = React.createClass({
   render () {
     return (
-      <h1>Search Page!</h1>
+      <div className="search">
+        <pre>
+          <code>
+            {JSON.stringify(preload, null, 4)}
+          </code>
+        </pre>
+      </div>
     )
   }
 })
