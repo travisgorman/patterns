@@ -8,12 +8,12 @@ import { HashRouter, Match } from 'react-router'
 const App = React.createClass({
   render () {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <div className='app'>
           <Match exactly pattern='/' component={Landing} />
           <Match pattern='/search' component={Search} />
         </div>
-      </HashRouter>
+      </BrowserRouter>
     )
   }
 })
