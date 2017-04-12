@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { HashRouter, Match } from 'react-router'
 import { Link } from 'react-router'
+import preload from '../public/data.json'
 // import Landing from './Landing'
 // import Search from './Search'
 
@@ -37,7 +38,7 @@ const Search = React.createClass({
       <div className='search'>
         {preload.shows.map((show) => {
           return (
-            <ShowCard key={show.imdbID} show={show} />
+            <ShowCard key={show.imdbID} {...show} />
           )
         })}
       </div>
@@ -45,18 +46,24 @@ const Search = React.createClass({
   }
 })
 
+const { string } = React.PropTypes
+
 const ShowCard = React.createClass({
   propTypes: {
-    show: React.PropTypes.object
+      poster: string,
+      title: string,
+      year: string,
+      description: string
   },
   render () {
-    const { poster, title, year, description } = this.props.show
+    const { poster, title, year, description } = this.props
+
     return (
       <div className='show-card'>
         <img src={`/public/img/posters/${poster}`} />
         <div>
           <h3>{title}</h3>
-          <h4>{year}</h4>
+          <h4>({year})</h4>
           <p>{description}</p>
         </div>
       </div>
