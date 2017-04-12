@@ -1,12 +1,19 @@
 import React from 'react';
 import './App.css';
+import { HashRouter, Match } from 'react-router'
+// import Landing from './Landing'
+// import Search from './Search'
+
 
 const App = React.createClass({
-  render() {
+  render () {
     return (
-      <div className="app">
-        <Landing />
-      </div>
+      <HashRouter>
+        <div className='app'>
+          <Match exactly pattern='/' component={Landing} />
+          <Match pattern='/search' component={Search} />
+        </div>
+      </HashRouter>
     )
   }
 })
@@ -19,6 +26,14 @@ const Landing = React.createClass({
         <input type="text" placeholder="Search"/>
         <a href="">or Browse All</a>
       </div>
+    )
+  }
+})
+
+const Search = React.createClass({
+  render () {
+    return (
+      <h1>Search Page!</h1>
     )
   }
 })
