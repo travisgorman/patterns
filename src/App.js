@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { HashRouter, Match } from 'react-router'
+import { Link } from 'react-router'
 // import Landing from './Landing'
 // import Search from './Search'
 
@@ -21,10 +22,10 @@ const App = React.createClass({
 const Landing = React.createClass({
   render () {
     return (
-      <div className="landing">
-        <h1>patterns</h1>
-        <input type="text" placeholder="Search"/>
-        <a href="">or Browse All</a>
+      <div className='landing'>
+        <h1>SVIDEOS</h1>
+        <input type='text' placeholder='Search...' />
+        <Link to='/search'> or Browse ALL </Link>
       </div>
     )
   }
