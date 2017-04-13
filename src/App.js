@@ -1,11 +1,8 @@
 import React from 'react';
 import './App.css';
-import { HashRouter, Match } from 'react-router'
-import { Link } from 'react-router'
-import preload from '../public/data.json'
-// import Landing from './Landing'
-// import Search from './Search'
-
+import { BrowserRouter, Match } from 'react-router'
+import Landing from './Landing'
+import Search from './Search'
 
 const App = React.createClass({
   render () {
@@ -16,85 +13,6 @@ const App = React.createClass({
           <Match pattern='/search' component={Search} />
         </div>
       </BrowserRouter>
-    )
-  }
-})
-
-const Landing = React.createClass({
-  render () {
-    return (
-      <div className='landing'>
-        <h1>SVIDEOS</h1>
-        <input type='text' placeholder='Search...' />
-        <Link to='/search'> or Browse ALL </Link>
-      </div>
-    )
-  }
-})
-
-const Search = React.createClass({
-  getInitialState () {
-    return {
-      searchTerm: ''
-    }
-  },
-  handleSearchTermChange (event) {
-    this.setState({
-      searchTerm: event.target.value})
-  },
-  render () {
-    return (
-      <div className='search'>
-        <header>
-          <h1>Squirk Movies!</h1>
-          <input
-            type="text"
-            placeholder="Search..."
-            value={this.state.searchTerm}
-            onChange={this.handleSearchTermChange} />
-        </header>
-        <div>
-          { preload.shows
-              .filter((show) => {
-                return `${show.title} ${show.description}`
-                  .toUpperCase()
-                    .indexOf(
-                      this.state.searchTerm
-                        .toUpperCase()) >= 0
-              })
-              .map((show) => {
-                return (
-                  <ShowCard key={show.imdbID} {...show} />
-                )
-              })
-          }
-        </div>
-      </div>
-    )
-  }
-})
-
-const { string } = React.PropTypes
-
-const ShowCard = React.createClass({
-  propTypes: {
-      poster: string,
-      title: string,
-      year: string,
-      description: string
-  },
-  render () {
-    const { poster, title, year, description } = this.props
-
-    return (
-      <div className='show-card'>
-        <img src={`/public/img/posters/${poster}`} />
-        <div>
-          <h3>{title}</h3>
-          <h4>({year})</h4>
-          <p>{description}</p>
-        </div>
-      </div>
     )
   }
 })
