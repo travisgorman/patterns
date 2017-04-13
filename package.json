@@ -6,6 +6,9 @@
     "react-scripts": "0.9.5"
   },
   "dependencies": {
+    "enzyme": "^2.8.1",
+    "enzyme-to-json": "^1.5.0",
+    "jest": "^19.0.2",
     "react": "^15.5.3",
     "react-dom": "^15.5.3",
     "react-router": "^4.1.0"
