@@ -9,3 +9,9 @@ test('Search snapshot test', () => {
   const tree = shallowToJson(component)
   expect(tree).toMatchSnapshot()
 })
+
+test('Search should render a ShowCard for each show', () => {
+  const component = shallow(<Search />)
+  expect(preload.shows.length)
+    .toEqual(component.find(ShowCard).length)
+})
