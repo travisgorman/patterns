@@ -68,7 +68,20 @@ A pre-configured eslint tool meant to standardize style and conventions, sideste
 
 ___
 
+## Testing with Jest and Enzyme
 
+    import { shallowToJson } from 'enzyme'
+
+- a helper tool meant to connect Enzyme and Jest's snapshot testing
+- `react-test-renderer` and `enzyme` can't be imported into the same file
+
+
+___
+
+## Coverage Testing with Istanbul
+Shows you how much of your code is covered by testing - what percentage of each file and what lines are uncovered.
+
+___
 
 
 
