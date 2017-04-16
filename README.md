@@ -83,6 +83,8 @@ Shows you how much of your code is covered by testing - what percentage of each 
 
 ___
 
+    npm t -- --coverage
+
 
 
 
