@@ -5,20 +5,21 @@ const Header = React.createClass({
   render () {
     let utilSpace
     if (this.props.showSearch) {
-      utilSpace = <input
-                    type='text'
-                    placeholder={'Search'}
-                    value={this.props.searchTerm}
-                    onChange={this.props.handleSearchTermChange} />
-    } else {
       utilSpace = (
-        <h2>
-          <Link to='/search'>
-            Back
-          </Link>
-        </h2>
-      )
-    }
+        <input
+          type='text'
+          placeholder={'Search'}
+          value={this.props.searchTerm}
+          onChange={this.props.handleSearchTermChange} />
+      )} else {
+        utilSpace = (
+          <h2>
+            <Link to='/search'>
+              Back
+            </Link>
+          </h2>
+        )
+      }
     return (
       <header>
         <h1>
