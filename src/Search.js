@@ -1,8 +1,8 @@
 import React from 'react'
-import preload from './data.json'
+import { connect } from 'react-redux'
 import ShowCard from './ShowCard'
 import Header from './Header'
-import { connect } from 'react-redux'
+
 const { arrayOf, shape, string } = React.PropTypes
 
 const Search = React.createClass({
@@ -19,15 +19,14 @@ const Search = React.createClass({
         <Header showSearch />
         <div>
           {this.props.shows
-            .filter((show) => `${show.title} ${show.description}`
-              .toUpperCase()
-                .indexOf(this.props.searchTerm
-                  .toUpperCase()) >= 0)
+            .filter((show) =>
+              `${show.title} ${show.description}`
+                .toUpperCase()
+                  .indexOf(this.props.searchTerm.toUpperCase()) >= 0)
             .map((show) => {
-              return (
-                <ShowCard key={show.imdbID} {...show} />
-              )
-            })}
+              <ShowCard key={show.imdbID} {...show} />
+            })
+          }
         </div>
       </div>
     )
