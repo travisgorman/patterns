@@ -21,6 +21,9 @@ const Landing = React.createClass({
   // handleSearchSubmit (e) {
   //   this.context.router.transitionTo('/search')
   // },
+  handleSearchSubmit (e) {
+    this.context.router.transitionTo('/search')
+  },
   render () {
     return (
       <div className='landing'>
