@@ -9,21 +9,12 @@ const Landing = React.createClass({
     searchTerm: string,
     dispatchSearchTerm: func
   },
-  // contextTypes: {
-  //   router: object
-  // },
   contextTypes: {
     router: object
   },
-  // handleSearchTermChange (e) {
-  //   this.props.dispatchSearchTerm(e.target.value)
-  // },
   handleSearchTermChange (e) {
     this.props.dispatchSearchTerm(e.target.value)
   },
-  // handleSearchSubmit (e) {
-  //   this.context.router.transitionTo('/search')
-  // },
   handleSearchSubmit (e) {
     this.context.router.transitionTo('/search')
   },
