@@ -12,8 +12,11 @@ const Landing = React.createClass({
   contextTypes: {
     router: object
   },
+  // handleSearchTermChange (e) {
+  //   this.props.dispatchSearchTerm(e.target.value)
+  // },
   handleSearchTermChange (e) {
-    this.props.dispatchSearchTerm(e.target.value)
+    this.props.dispatch(setSearchTerm(e.target.value))
   },
   handleSearchSubmit (e) {
     this.context.router.transitionTo('/search')
@@ -25,9 +28,9 @@ const Landing = React.createClass({
         <form onSubmit={this.handleSearchSubmit}>
           <input
             type='text'
-            placeholder='Search...'
+            onChange={this.handleSearchTermChange}
             value={this.props.searchTerm}
-            onChange={this.handleSearchTermChange} />
+            placeholder='Search...' />
         </form>
         <Link to='/search'> or Browse ALL </Link>
       </div>
@@ -35,4 +38,9 @@ const Landing = React.createClass({
   }
 })
 
-export default Landing
+export default connect(mapStateToProps)(Landing)
+
+// connect injects an additional prop called dispatch
+// dispatch actions directly to redux
+// mapStateToProps
+// mapDispatchToProps
