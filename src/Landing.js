@@ -7,20 +7,18 @@ const { string, func, object } = React.PropTypes
 const Landing = React.createClass({
   propTypes: {
     searchTerm: string,
-    dispatchSearchTerm: func
+    dispatchSetSearchTerm: func
   },
   contextTypes: {
     router: object
   },
-  // handleSearchTermChange (e) {
-  //   this.props.dispatchSearchTerm(e.target.value)
-  // },
   handleSearchTermChange (e) {
-    this.props.dispatch(setSearchTerm(e.target.value))
+    this.props.dispatchSetSearchTerm(setSearchTerm(e.target.value))
   },
   handleSearchSubmit (e) {
+    e.preventDefault()
     this.context.router.transitionTo('/search')
-  },
+  }
   render () {
     return (
       <div className='landing'>
@@ -38,9 +36,14 @@ const Landing = React.createClass({
   }
 })
 
+const mapStateToProps = (state) => {
+  return {
+    searchTerm: state.searchTerm
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchSetSearchTerm(setSearchTerm(search))
+  }
+}
 export default connect(mapStateToProps)(Landing)
-
-// connect injects an additional prop called dispatch
-// dispatch actions directly to redux
-// mapStateToProps
-// mapDispatchToProps
