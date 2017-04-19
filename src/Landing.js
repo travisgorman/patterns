@@ -1,36 +1,35 @@
 import React from 'react'
-import { Link } from 'react-router'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
 import { setSearchTerm } from './actionCreators'
 const { string, func, object } = React.PropTypes
 
 const Landing = React.createClass({
+  contextTypes: {
+    router: object
+  },
   propTypes: {
     searchTerm: string,
     dispatchSetSearchTerm: func
   },
-  contextTypes: {
-    router: object
+  handleSearchTermChange (event) {
+    this.props.dispatchSetSearchTerm(event.target.value)
   },
-  handleSearchTermChange (e) {
-    this.props.dispatchSetSearchTerm(setSearchTerm(e.target.value))
-  },
-  handleSearchSubmit (e) {
-    e.preventDefault()
+  handleSearchSubmit (event) {
+    event.preventDefault()
     this.context.router.transitionTo('/search')
-  }
+  },
   render () {
     return (
       <div className='landing'>
-        <h1>SquirkFlix</h1>
+        <h1>svideo</h1>
         <form onSubmit={this.handleSearchSubmit}>
-          <input
-            type='text'
+          <input type='text'
             onChange={this.handleSearchTermChange}
             value={this.props.searchTerm}
-            placeholder='Search...' />
+            placeholder='Search' />
         </form>
-        <Link to='/search'> or Browse ALL </Link>
+        <Link to='/search'> or Browse All </Link>
       </div>
     )
   }
@@ -41,9 +40,13 @@ const mapStateToProps = (state) => {
     searchTerm: state.searchTerm
   }
 }
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchSetSearchTerm(setSearchTerm(search))
+    dispatchSetSearchTerm (searchTerm) {
+      dispatch(setSearchTerm(searchTerm))
+    }
   }
 }
-export default connect(mapStateToProps)(Landing)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Landing)
