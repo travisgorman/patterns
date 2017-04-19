@@ -10,7 +10,8 @@ const Details = React.createClass({
       year: string,
       poster: string,
       trailer: string,
-      description: string
+      description: string,
+      imdbID: string
     })
   },
   getInitialState () {
