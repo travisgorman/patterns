@@ -12,6 +12,9 @@ const Landing = React.createClass({
   // contextTypes: {
   //   router: object
   // },
+  contextTypes: {
+    router: object
+  },
   // handleSearchTermChange (e) {
   //   this.props.dispatchSearchTerm(e.target.value)
   // },
