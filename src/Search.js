@@ -3,6 +3,7 @@ import preload from './data.json'
 import ShowCard from './ShowCard'
 import Header from './Header'
 import { connect } from 'react-redux'
+const { arrayOf, shape, string } = React.PropTypes
 
 const Search = React.createClass({
   propTypes: {
