@@ -1,7 +1,9 @@
 import React from 'react'
 import Header from './Header'
+import { connect } from 'react-redux'
+import { getOMDBDetails } from './actionCreators'
 import axios from 'axios'
-const { shape, string } = React.PropTypes
+const { shape, string, func } = React.PropTypes
 
 const Details = React.createClass({
   propTypes: {
@@ -12,24 +14,18 @@ const Details = React.createClass({
       trailer: string,
       description: string,
       imdbID: string
-    })
+    }),
+    omdbData: shape({ imdbID: string }),
+    dispatch: func
   },
-  getInitialState () {
-    return {
-      omdbData: {}
-    }
-  },
+
 // Make Details a stateful component with a value `omdbData` set to an empty string
 // get imdb rating from api and set the response to `omdbData`
 // if there is an error, console the error
   componentDidMount () {
-    axios.get(`http://www.omdbapi.com/?i=${this.props.show.imdbID}`)
-      .then((response) => {
-        this.setState({
-          omdbData: response.data
-        })
-      })
-        .catch((error) => console.error('axios error', error))
+    if (!this.props.omdbData.idmdRating) {
+      this.props.dispatch(getOMDBDetails(this.props.show.imdbID))
+    }
   },
 // if `omdbData` is no longer an empty object, return the rating value in an h3
 // otherwise, return the loading image
@@ -39,8 +35,8 @@ const Details = React.createClass({
   render () {
     const { title, description, year, poster, trailer } = this.props.show
     let rating
-    if (this.state.omdbData.imdbRating) {
-      rating = <h3>{this.state.omdbData.imdbRating}</h3>
+    if (this.props.omdbData.imdbRating) {
+      rating = <h3>{this.props.omdbData.imdbRating}</h3>
     } else {
       rating = <img src='/public/img/loading.png' alt='loading indicator' />
     }
@@ -62,4 +58,10 @@ const Details = React.createClass({
   }
 })
 
-export default Details
+const mapStateToProps = (state, ownProps) => {
+  const omdbData = state.omdbData[ownProps.show.imdbID] ?
+    state.omdbData[ownProps.show.imdbID] : {}
+    return { omdbData }
+}
+
+export default connect(mapStateToProps)(Details)
